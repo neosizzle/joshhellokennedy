@@ -8,7 +8,7 @@ import AgeInput from "./components/AgeInput";
 function App() {
   const [input, setInput] = useState("Hello World");
   const [name, setName] = useState("");
-  const [bool, setBool] = useState(false);
+  const [bool, setBool] = useState(0);
 
   function nameHandler(e) {
     const selectedValue = e.target.value;
@@ -29,13 +29,14 @@ function App() {
   function tester(e) {
     e.preventDefault();
     console.log(name);
-    // Do Something
+    setBool(bool => bool + 1);
   }
 
   return (
     <div className="App">
       <header className="App-header">
         <form onSubmit={submitHandler}>
+          <p>{bool}</p>
           <NameInput nameHandler={nameHandler} name={name} />
           {/* <AgeInput/> */}
           {/* <AddressInput/> */}
