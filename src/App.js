@@ -1,60 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
-import { useState } from "react"
+import "./App.css";
+import { useState } from "react";
+
+//Component Imports
+import NameInput from "./components/NameInput";
+import AgeInput from "./components/AgeInput";
 
 function App() {
-  const [ input, setInput ] = useState('Hello World')
+  const [input, setInput] = useState("Hello World");
+  const [name, setName] = useState("");
+  const [bool, setBool] = useState(false);
 
-  function inputHandler (e) {
-    setInput(e.target.value)
+  function nameHandler(e) {
+    const selectedValue = e.target.value;
+    if (selectedValue === "back") {
+      // Handle the backspace option: remove the last character from the name.
+      const updatedName = name.slice(0, -1);
+      setName((name) => updatedName);
+    } else {
+      setName((name) => name + selectedValue);
+    }
   }
 
-  const [ name, setName ] = useState('')
-
-  function nameHandler (e) {
-    setName(e.target.value)
-    console.log(name)
+  function submitHandler(e) {
+    e.preventDefault();
+    // Do Something
   }
 
-  function onClickHandler (e) {
-    e.preventDefault()
-    console.log(input)
+  function tester(e) {
+    e.preventDefault();
+    console.log(name);
+    // Do Something
   }
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload. 
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          >
-          Learn React
-        </a>
-        <form>
-          <label htmlFor="this">This is for form: </label>
-          <input id="this" value={input} onChange={inputHandler}/>
-          <button onClick={onClickHandler}>Click me!</button>
+        <form onSubmit={submitHandler}>
+          <NameInput nameHandler={nameHandler} name={name} />
+          {/* <AgeInput/> */}
+          {/* <AddressInput/> */}
+          {/* <EmailInput/> */}
+          {/* <IntraInput/> */}
+          {/* <PhoneNumInput/> */}
+          <button onClick={tester}>Click Me!</button>
         </form>
-        <label>
-          Please select your name: 
-          <select value={input} onChange={nameHandler}>
-            <option value="Jya Xuen">Jya Xuen</option>
-            <option value="Jun Han">Jun Han</option>
-            <option value="Alex">Alex</option>
-          </select>
-          <select value={input} onChange={nameHandler}>
-            <option value="Jya Xuen">Jya Xuen</option>
-            <option value="Jun Han">Jun Han</option>
-            <option value="Alex">Alex</option>
-          </select>
-          <button onClick={onClickHandler}>Submit</button>
-        </label>
       </header>
     </div>
   );
