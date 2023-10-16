@@ -3,6 +3,8 @@ import { useState } from "react";
 //Component Imports
 import NameInput from "./NameInput";
 import AgeInput from "./AgeInput";
+import CountryInput from "./CountryInput"
+import EmailInput from "./EmailInput"
 
 const Form = () => {
 	const [name, setName] = useState("");
@@ -35,10 +37,10 @@ const Form = () => {
 	return (
 	<div>
 		<form onSubmit={submitHandler}>
-          <NameInput nameHandler={nameHandler} name={name} />
-          {/* <AgeInput/> */}
-          {/* <AddressInput/> */}
-          {/* <EmailInput/> */}
+          <NameInput nameHandler={nameHandler} name={name} tester={tester} />
+          <AgeInput/>
+          <CountryInput/>
+          <EmailInput/>
           {/* <IntraInput/> */}
           {/* <PhoneNumInput/> */}
         </form>
