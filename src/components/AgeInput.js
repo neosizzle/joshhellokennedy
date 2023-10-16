@@ -4,10 +4,10 @@ import React, { useState, useEffect } from 'react';
 const LEFT_TO_RIGHT = true;
 const RIGHT_TO_LEFT = false;
 
-const AgeInput = () => {
+const AgeInput = ({age, setAge}) => {
   const [position, setPosition] = useState(0); // Initial position of the arrow
   const [isMoving, setIsMoving] = useState(true); // Flag to control arrow movement
-  const [selectedNumber, setSelectedNumber] = useState(null); // Number pointed by the arrow
+  // const [age, setAge] = useState(null); // Number pointed by the arrow
   const [direction, setDirection] = useState(LEFT_TO_RIGHT);
   const [intervalid, setIntervalid] = useState(-1); 
 
@@ -41,7 +41,7 @@ const AgeInput = () => {
             // setIsMoving(false);
             // newPosition = Math.max(0, Math.min(axisWidth - arrowWidth, newPosition));
             // setIsMoving(false); // Stop the arrow when it reaches the end
-            // setSelectedNumber(calculateSelectedNumber(newPosition));
+            // setAge(calculateSelectedNumber(newPosition));
           }
           if (newPosition < 0) {
             setDirection(LEFT_TO_RIGHT)
@@ -63,12 +63,12 @@ const AgeInput = () => {
 
   const stopArrow = () => {
     setIsMoving(false);
-    setSelectedNumber(calculateSelectedNumber(position));
+    setAge(calculateSelectedNumber(position));
   };
 
   const resetGame = () => {
     setIsMoving(true);
-    setSelectedNumber(null);
+    setAge(null);
     setPosition(0);
   };
 
@@ -105,8 +105,8 @@ const AgeInput = () => {
         <button onClick={stopArrow}>Click to select age</button>
         <button onClick={resetGame}>Restart</button>
       </div>
-      {selectedNumber !== null && (
-        <p>Selected age: {selectedNumber}</p>
+      {age !== null && (
+        <p>Selected age: {age}</p>
       )}
     </div>
   );

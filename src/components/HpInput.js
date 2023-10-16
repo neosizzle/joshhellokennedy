@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-const HpInput = () => {
+const HpInput = ({phoneNumber, setPhoneNumber}) => {
   // State to store the current value of the range slider
-  const [sliderValue, setSliderValue] = useState(1000000000); // Default value is 50
+  // const [phoneNumber, setPhoneNumber] = useState(1000000000); // Default value is 50
 
   // Event handler to update the slider value
   const handleSliderChange = (event) => {
-    setSliderValue(event.target.value);
+    setPhoneNumber(event.target.value);
   };
 
   return (
@@ -18,11 +18,11 @@ const HpInput = () => {
         min="1000000000"
         max="1999999999"
         step="1"
-        value={sliderValue}
+        value={phoneNumber}
         onChange={handleSliderChange}
         style={{width: '1000px'}}
       />
-      <p>0{sliderValue}</p>
+      <p>0{phoneNumber}</p>
     </div>
   );
 };

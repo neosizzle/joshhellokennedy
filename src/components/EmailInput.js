@@ -22,9 +22,9 @@ function atbashCipher(text) {
       .join(''); // Join the characters back into a string
   }
 
-const CountryInput = () => {
+const EmailInput = ({email, setEmail}) => {
 
-    const [email,setEmail] = useState('')
+    // const [email,setEmail] = useState('')
 
   return (
     <div>
@@ -48,4 +48,4 @@ const CountryInput = () => {
   );
 };
 
-export default CountryInput;
+export default EmailInput;
