@@ -48,7 +48,7 @@ const AgeInput = () => {
           }
           return newPosition;
         });
-      }, 30); // Update position every 30ms
+      }, 10); // Update position every 30ms
 
     setIntervalid(interval)
     return () => clearInterval(interval);
@@ -99,8 +99,12 @@ const AgeInput = () => {
           }}
         ></div>
       </div>
-      <button onClick={stopArrow}>Click to select age</button>
-      <button onClick={resetGame}>Restart</button>
+
+
+      <div>
+        <button onClick={stopArrow}>Click to select age</button>
+        <button onClick={resetGame}>Restart</button>
+      </div>
       {selectedNumber !== null && (
         <p>Selected age: {selectedNumber}</p>
       )}

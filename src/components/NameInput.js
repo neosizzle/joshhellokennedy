@@ -1,10 +1,10 @@
 import React from "react";
 
-function NameInput(props) {
+function NameInput({name, nameHandler}) {
   return (
     <div>
-      <label>Enter your name: {props.name} </label>
-      <select onChange={props.nameHandler}>
+      <label>Enter your name: {name} </label>
+      <select onChange={nameHandler}>
         <option value="">-- Select --</option>
         <option value="A">A</option>
         <option value="B">B</option>
@@ -35,7 +35,7 @@ function NameInput(props) {
         <option value="back">backspace</option>
         {/* Add more character options here */}
       </select>
-      <button onClick={props.tester}>Submit</button>
+      {/* <button onClick={props.tester}>Submit</button> */}
     </div>
   );
 }

@@ -6,6 +6,8 @@ import AgeInput from "./AgeInput";
 import CountryInput from "./CountryInput"
 import EmailInput from "./EmailInput"
 import HpInput from "./HpInput"
+import Ads from './YourAds'
+import Trivia from './Trivia'
 
 const Form = () => {
 	const [name, setName] = useState("");
@@ -16,34 +18,34 @@ const Form = () => {
 	  if (selectedValue === "back") {
 		// Handle the backspace option: remove the last character from the name.
 		const updatedName = name.slice(0, -1);
-		setName((name) => updatedName);
+		setName(updatedName);
 	  } else {
 		setName((name) => name + selectedValue);
 	  }
 	}
   
 	function submitHandler(e) {
-	  e.preventDefault();
+	  alert('submit')
 	  // Do Something
 	}
-  
-	function tester(e) {
-	  e.preventDefault();
-	  if (name) {
-	  	console.log(name);
-	  }
-	}
+
 
 	return (
 	<div>
-		<form onSubmit={submitHandler}>
-          <NameInput nameHandler={nameHandler} name={name} tester={tester} />
-          <AgeInput/>
-          <CountryInput/>
-          <EmailInput/>
-          {/* <IntraInput/> */}
-          <HpInput/>
-        </form>
+
+		<NameInput nameHandler={nameHandler} name={name} />
+		<AgeInput/>
+		<CountryInput/>
+		<EmailInput/>
+		{/* <IntraInput/> */}
+		<HpInput/>
+		{/* <Ads/> */}
+
+		<button onClick={submitHandler}>
+			SUBMIT
+		</button>
+
+
 	</div> );
 }
  
