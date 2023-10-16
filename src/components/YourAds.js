@@ -19,7 +19,7 @@ function Popupad() {
       const popupTimer = setInterval(() => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % adImages.length);
         setShowPopup(true);
-      }, 3000);
+      }, 10000);
   
       return () => {
         clearInterval(popupTimer);

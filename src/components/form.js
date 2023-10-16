@@ -1,4 +1,6 @@
 import { useState } from "react";
+import './form.css'
+import gif from './pochita-spinning.gif'
 
 //Component Imports
 import NameInput from "./NameInput";
@@ -7,7 +9,7 @@ import CountryInput from "./CountryInput"
 import EmailInput from "./EmailInput"
 import HpInput from "./HpInput"
 import Ads from './YourAds'
-import Trivia from './Trivia'
+// import Trivia from './Trivia'
 
 const iso3166CountryCodes = [
     "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AS", "AT", "AU", "AW", "AX", "AZ",
@@ -116,14 +118,12 @@ const Form = () => {
 		<AgeInput age={age} setAge={setAge} />
 		<CountryInput country={country} setCountry={setCountry} genRandomCode={genRandomCode} />
 		<EmailInput email={email} setEmail={setEmail}/>
-		{/* <IntraInput/> */}
 		<HpInput phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber}/>
-		{/* <Ads/> */}
-
+		<Ads/>
 		<button onClick={submitHandler}>
-			SUBMIT
+			Submit
 		</button>
-
+		<img src={gif} style={{ width: '300px' }}/>
 
 	</div> );
 }
