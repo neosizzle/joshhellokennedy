@@ -5,6 +5,7 @@ import NameInput from "./NameInput";
 import AgeInput from "./AgeInput";
 import CountryInput from "./CountryInput"
 import EmailInput from "./EmailInput"
+import HpInput from "./HpInput"
 
 const Form = () => {
 	const [name, setName] = useState("");
@@ -29,7 +30,6 @@ const Form = () => {
 	function tester(e) {
 	  e.preventDefault();
 	  if (name) {
-		setBool(1);
 	  	console.log(name);
 	  }
 	}
@@ -42,7 +42,7 @@ const Form = () => {
           <CountryInput/>
           <EmailInput/>
           {/* <IntraInput/> */}
-          {/* <PhoneNumInput/> */}
+          <HpInput/>
         </form>
 	</div> );
 }

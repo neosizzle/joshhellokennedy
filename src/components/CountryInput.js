@@ -27,6 +27,7 @@ const CountryInput = () => {
 
   return (
     <div>
+      <br></br>
         <p>Select your country</p>
         <img
         src={`https://flagcdn.com/w640/${country.toLowerCase()}.png`}
