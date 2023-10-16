@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import contents from '../tnc.json'
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const Tnc = () => {
 	const [isLoadingWords, setIsLoadingWords] = useState(true);
@@ -77,7 +79,7 @@ const Tnc = () => {
 	const validateAnswers = () => {
 		for (let index = 0; index < answers.length; index++) {
 			const answer = answers[index];
-			if (answer.value !== contents.quiz[answer.questionIndex].answer)
+			if (!contents.quiz[answer.questionIndex] || answer.value !== contents.quiz[answer.questionIndex].answer)
 				return false;
 		}
 		return true;
@@ -86,6 +88,9 @@ const Tnc = () => {
 	return ( 
 		<div style={{padding:'10px'}}>
 			<h1 onClick={() => setCurrentPage(totalPages - 2)}>Terms and conditions</h1>
+
+			{/* Toasts */}
+			<Toaster />
 
 			{/* TNC Content */}
 			<div>
@@ -127,7 +132,9 @@ const Tnc = () => {
 					<button
 						disabled = {currentPage < totalPages - 1}
 						onClick={() => {
-							alert("you clicked cancel btw")
+							toast('You clicked cancel btw', {
+								icon: '👏',
+							  });
 							setCurrentPage(0)
 						}}
 						>
@@ -140,8 +147,12 @@ const Tnc = () => {
 						disabled = {currentPage < totalPages - 1}
 						onClick={() => {
 							if (validateAnswers())
-								return alert("yes")
-							alert("no")
+							{
+								return toast.success('Nice work, you live');
+								// TODO go to next page
+							}
+							toast.error("Wrong answers, skill issue");
+							setCurrentPage(0)
 						}}
 						>
 							{hoverFlag ? 'submit' : 'cancel'}
