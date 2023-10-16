@@ -5,7 +5,6 @@ import NameInput from "./NameInput";
 import AgeInput from "./AgeInput";
 
 const Form = () => {
-	const [input, setInput] = useState("Hello World");
 	const [name, setName] = useState("");
 	const [bool, setBool] = useState(false);
   
@@ -27,9 +26,12 @@ const Form = () => {
   
 	function tester(e) {
 	  e.preventDefault();
-	  console.log(name);
-	  // Do Something
+	  if (name) {
+		setBool(1);
+	  	console.log(name);
+	  }
 	}
+
 	return (
 	<div>
 		<form onSubmit={submitHandler}>
@@ -39,7 +41,6 @@ const Form = () => {
           {/* <EmailInput/> */}
           {/* <IntraInput/> */}
           {/* <PhoneNumInput/> */}
-          <button onClick={tester}>Click Me!</button>
         </form>
 	</div> );
 }
