@@ -1,0 +1,13 @@
+div {
+    color: #ff10f0;
+    font-family: "Comic Sans MS", Vivaldi, cursive;
+    font-weight: bold;
+}
+
+button {
+    color: #fff00f;
+    background-color: #ff10f0;
+    border-radius: 20px;
+    border: solid 10px green;
+    font-family: Vivaldi;
+}
