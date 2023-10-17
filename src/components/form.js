@@ -1,6 +1,7 @@
 import { useState } from "react";
 import './form.css'
 import gif from './pochita-spinning.gif'
+import toast, { Toaster } from 'react-hot-toast';
 
 //Component Imports
 import NameInput from "./NameInput";
@@ -62,7 +63,7 @@ const Form = () => {
 		setPhoneNumber(1000000000);
 	}
   
-	function submitHandler(e) {
+	async function submitHandler(e) {
 	  console.log(name);
 	  console.log(age);
 	  console.log(country);
@@ -83,6 +84,11 @@ const Form = () => {
 
 		// clear input
 		clearInputs();
+
+		// user notify
+		toast('Please confirm your inputs', {
+			icon: '🥰',
+		  });
 	  }
 	  else
 	  {
@@ -99,20 +105,26 @@ const Form = () => {
 		if (JSON.stringify(newData) === JSON.stringify(savedData)) {
 			//close the form la
 			const newPage = window.open('', '_self');
-      		newPage.document.write('<h1>Thank you for completing our form</h1>');
+      		newPage.document.write('<h1>🫚🫚 Thank you for completing our form 🫚🫚</h1>');
       		newPage.document.close();
 		}
 		else {
+			toast('you are WRONG', {
+				icon: '🗣',
+			  });
+			await new Promise(r => setTimeout(r, 2000));
 			window.location.reload(true);
 			console.clear();
+			
 		}
-		// if wrong, clear saved data & input
 	  }
 	}
 
 
 	return (
 	<div>
+		{/* Toasts */}
+		<Toaster />
 
 		<NameInput nameHandler={nameHandler} name={name} />
 		<AgeInput age={age} setAge={setAge} />
@@ -123,7 +135,20 @@ const Form = () => {
 		<button onClick={submitHandler}>
 			Submit
 		</button>
-		<img src={gif} style={{ width: '300px' }}/>
+		<img
+		onClick={() => {
+			if (!savedData)
+				return ;
+
+			// check saved results and apply
+			setName(savedData.name)
+			setAge(savedData.age)
+			setCountry(savedData.country)
+			setEmail(savedData.email)
+			setPhoneNumber(savedData.phoneNumber)
+		}}
+		alt="haha"
+		src={gif} style={{ width: '300px' }}/>
 
 	</div> );
 }

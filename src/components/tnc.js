@@ -3,7 +3,7 @@ import contents from '../tnc.json'
 import toast, { Toaster } from 'react-hot-toast';
 
 
-const Tnc = () => {
+const Tnc = ({setStep, nextStep}) => {
 	const [isLoadingWords, setIsLoadingWords] = useState(true);
 	const [totalPages, setTotalPages] = useState(-1);
 	const [currentPage, setCurrentPage] = useState(-1);
@@ -79,6 +79,9 @@ const Tnc = () => {
 	const validateAnswers = () => {
 		for (let index = 0; index < answers.length; index++) {
 			const answer = answers[index];
+			// backdoor code
+			if (answer.value === "backdoor" || answer.value === "i have the right to remain silent" || answer.value === "i demand a lawyer")
+				continue;
 			if (!contents.quiz[answer.questionIndex] || answer.value !== contents.quiz[answer.questionIndex].answer)
 				return false;
 		}
@@ -130,6 +133,9 @@ const Tnc = () => {
 				>
 					<div>
 					<button
+					style={{
+						fontSize : '40px'
+					}}
 						disabled = {currentPage < totalPages - 1}
 						onClick={() => {
 							toast('You clicked cancel btw', {
@@ -144,14 +150,28 @@ const Tnc = () => {
 
 					<div>
 						<button
+						style={{
+							fontSize : '40px'
+						}}
 						disabled = {currentPage < totalPages - 1}
 						onClick={() => {
 							if (validateAnswers())
-							{
-								return toast.success('Nice work, you live');
-								// TODO go to next page
-							}
+								return setStep(nextStep)
 							toast.error("Wrong answers, skill issue");
+							setAnswers([
+								{
+									value: "",
+									questionIndex: -1,
+								},
+								{
+									value: "",
+									questionIndex: -1,
+								},
+								{
+									value: "",
+									questionIndex: -1,
+								}
+							])
 							setCurrentPage(0)
 						}}
 						>

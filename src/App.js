@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       {
         step === TNC_STEP ? 
-        <Tnc/>
+        <Tnc setStep={setStep} nextStep = {FORM_STEP}/>
         :
         step === FORM_STEP ? 
         <Form/>

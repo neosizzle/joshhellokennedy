@@ -1,12 +1,33 @@
 import React from "react";
 
+let characters = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase().split('');
+
+// get random options
+const getRandomOptions = (number, array) => {
+  let arrayCopy = [...array];
+  let selectedElements = [];
+
+  for(let i = 0; i < number; i++) {
+    let randIndex = Math.floor(Math.random() * arrayCopy.length);
+    let selectedElement = arrayCopy.splice(randIndex, 1)[0];
+    selectedElements.push(selectedElement);
+  }
+
+  return selectedElements;
+}
+
 function NameInput({name, nameHandler}) {
   return (
     <div>
       <label>Enter your name: {name} </label>
       <select onChange={nameHandler}>
         <option value="">-- Select --</option>
-        <option value="A">A</option>
+        {
+          getRandomOptions(characters.length, characters).map((e) => {
+            return <option value={e}>{e}</option>
+          })
+        }
+        {/* <option value="A">A</option>
         <option value="B">B</option>
         <option value="C">C</option>
         <option value="D">D</option>
@@ -30,7 +51,7 @@ function NameInput({name, nameHandler}) {
         <option value="W">W</option>
         <option value="X">X</option>
         <option value="Y">Y</option>
-        <option value="Z">Z</option>
+        <option value="Z">Z</option> */}
         <option value=" "> </option>
         <option value="back">backspace</option>
         {/* Add more character options here */}
